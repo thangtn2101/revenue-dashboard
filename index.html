@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revenue Dashboard — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">M</div>
+        <div><b>MY GRASS</b><small>BUSINESS PORTAL</small></div>
+      </div>
+      <div class="nav-label">WORKSPACE</div>
+      <a class="nav-item" href="#"><span>▦</span> Tổng quan</a>
+      <a class="nav-item active" href="#"><span>↗</span> Doanh thu</a>
+      <a class="nav-item" href="#"><span>▤</span> Đơn hàng</a>
+      <a class="nav-item" href="#"><span>♙</span> Khách hàng</a>
+      <a class="nav-item" href="#"><span>◉</span> Sản phẩm</a>
+      <div class="nav-label nav-lower">QUẢN LÝ</div>
+      <a class="nav-item" href="#"><span>♧</span> Nhân viên & đại lý</a>
+      <a class="nav-item" href="#"><span>▧</span> Báo cáo</a>
+      <a class="nav-item" href="#"><span>⚙</span> Cài đặt</a>
+      <div class="sidebar-bottom">
+        <div class="help-icon">?</div>
+        <div><b>Cần hỗ trợ?</b><small>Liên hệ quản trị viên</small></div><span class="arrow">↗</span>
+      </div>
+      <div class="profile">
+        <div class="avatar">AT</div>
+        <div><b>Admin Trần</b><small>Quản trị viên</small></div><span class="dots">•••</span>
+      </div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="breadcrumbs">Workspace <span>/</span> Báo cáo <span>/</span> <b>Doanh thu</b></div>
+        <div class="top-actions"><button class="icon-btn" aria-label="Thông báo">♧<i></i></button>
+          <div class="top-avatar">AT</div>
+        </div>
+      </header>
+      <div class="content">
+        <div class="page-heading">
+          <div>
+            <h1>Doanh thu</h1>
+          </div>
+        </div>
+        <section class="filter-bar">
+          <div class="filter-group"><label>THỊ TRƯỜNG</label>
+            <div class="segmented market-segment" id="marketFilter"><button class="selected" data-market="all">Tất
+                cả</button><button data-market="jp">Nhật Bản</button><button data-market="id">Indo</button><button
+                data-market="mm">Myanmar</button><button data-market="vn">Việt Nam</button></div>
+          </div>
+          <div class="filter-divider"></div>
+          <div class="filter-group period-group"><label>THỜI GIAN</label>
+            <div class="segmented" id="periodFilter"><button class="selected" data-period="month">Tháng</button><button
+                data-period="quarter">Quý</button><button data-period="year">Năm</button></div>
+          </div>
+          <div class="filter-group date-group"><label id="dateFilterLabel">CHỌN THÁNG</label>
+            <select id="dateFilter"
+              class="date-select" aria-label="Chọn kỳ báo cáo"></select></div>
+        </section>
+        <div class="section-title">
+          <div>
+            <h2>Tổng quan hiệu suất</h2>
+          </div><span class="period-pill" id="periodLabel">Tháng 10, 2026</span>
+        </div>
+        <section class="kpi-grid">
+          <article class="kpi profit-card">
+            <div class="profit-top"><span class="kpi-label">Lợi nhuận ròng</span><span class="kpi-icon">↗</span></div>
+            <div class="profit-value" id="profitValue">₫ 428,6M</div>
+            <div class="profit-equation">Là Doanh thu <span>−</span> Chi phí</div>
+            <div class="kpi-bottom"><span class="trend up" id="profitTrend">↗ 18,6%</span><span>so với kỳ trước</span>
+              <div class="sparkline" id="sparkProfit"></div>
+            </div>
+            <div class="profit-orb"></div>
+          </article>
+          <article class="kpi">
+            <div class="kpi-top"><span class="kpi-label">Tổng doanh thu</span><span
+                class="kpi-icon revenue-icon">↗</span></div>
+            <div class="kpi-value" id="revenueValue">₫ 1,28B</div>
+            <div class="kpi-note">Tổng giá trị đơn hàng thành công</div>
+            <div class="kpi-bottom"><span class="trend up" id="revenueTrend">↗ 12,4%</span><span>so với kỳ trước</span>
+              <div class="mini-bars" id="revenueBars"></div>
+            </div>
+          </article>
+          <article class="kpi">
+            <div class="kpi-top"><span class="kpi-label">Tổng chi phí</span><span class="kpi-icon cost-icon">↘</span>
+            </div>
+            <div class="kpi-value" id="costValue">₫ 851,4M</div>
+            <div class="kpi-note">Vận hành, hoa hồng và dịch vụ</div>
+            <div class="kpi-bottom"><span class="trend down" id="costTrend">↗ 4,2%</span><span>so với kỳ trước</span>
+              <div class="mini-bars warm" id="costBars"></div>
+            </div>
+          </article>
+          <article class="kpi">
+            <div class="kpi-top"><span class="kpi-label">Tổng đơn hàng</span><span class="kpi-icon orders-icon">▤</span>
+            </div>
+            <div class="kpi-value" id="ordersValue">2.486</div>
+            <div class="kpi-note">Đơn hàng đã thanh toán</div>
+            <div class="kpi-bottom"><span class="trend up" id="ordersTrend">↗ 8,7%</span><span>so với kỳ trước</span>
+              <div class="mini-bars blue" id="ordersBars"></div>
+            </div>
+          </article>
+        </section>
+        <section class="analytics-grid">
+          <article class="panel revenue-panel">
+            <div class="panel-header">
+              <div>
+                <div class="panel-title-row">
+                  <h3>Biến động doanh thu</h3>
+                </div>
+              </div><button class="more-btn" aria-label="Tuỳ chọn">•••</button>
+            </div>
+            <div class="chart-legend"><span><i class="legend-dot actual"></i> Doanh thu</span><span><i
+                  class="legend-line"></i> Xu hướng</span>
+            </div>
+            <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
+            <div class="chart-insights">
+              <div class="insight"><span class="insight-icon high">↗</span>
+                <div><small>CAO NHẤT</small><b id="chartMax">₫ 168M</b></div>
+              </div>
+              <div class="insight"><span class="insight-icon avg">━</span>
+                <div><small>TRUNG BÌNH</small><b id="chartAvg">₫ 128M</b></div>
+              </div>
+              <div class="insight"><span class="insight-icon low">↘</span>
+                <div><small>THẤP NHẤT</small><b id="chartMin">₫ 82M</b></div>
+              </div>
+            </div>
+          </article>
+          <article class="panel highlight-panel">
+            <div class="panel-header">
+              <div>
+                <h3>Điểm nổi bật</h3>
+              </div><span class="highlight-symbol">✳</span>
+            </div>
+            <div class="highlight-hero">
+              <div class="highlight-hero-label"><span class="pulse"></span> DOANH THU CAO NHẤT</div>
+              <div class="highlight-money" id="highlightMax">₫ 168,4M</div>
+              <div class="highlight-month" id="highlightMonth">Tháng 09, 2026 <span>▲ 24,8%</span></div>
+            </div>
+            <div class="highlight-row">
+              <div class="highlight-row-icon green">↗</div>
+              <div class="highlight-row-copy"><small>TĂNG TRƯỞNG CAO NHẤT</small><b id="bestGrowth">+24,8%</b><span
+                  id="bestGrowthLabel">Tháng 09 so với tháng 08</span></div><span class="row-chevron">↗</span>
+            </div>
+            <div class="highlight-row">
+              <div class="highlight-row-icon red">↘</div>
+              <div class="highlight-row-copy"><small>GIẢM MẠNH NHẤT</small><b id="worstDrop">−8,2%</b><span
+                  id="worstDropLabel">Tháng 06 so với tháng 05</span></div><span class="row-chevron">↘</span>
+            </div>
+          </article>
+        </section>
+        <section class="panel table-panel">
+          <div class="panel-header">
+            <div>
+              <h3>Chi tiết doanh thu</h3>
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>THỜI GIAN</th>
+                  <th>DOANH THU</th>
+                  <th>SO VỚI KỲ TRƯỚC</th>
+                  <th>TĂNG TRƯỞNG</th>
+                </tr>
+              </thead>
+              <tbody id="revenueTable"></tbody>
+            </table>
+          </div>
+          <div class="table-footer"><span id="tableCount">Hiển thị 6 kỳ gần nhất</span>
+          </div>
+        </section>
+        <section class="panel sales-panel">
+          <div class="panel-header">
+            <div>
+              <h3>Top nhân viên kinh doanh</h3>
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>NHÂN VIÊN</th>
+                  <th>THỊ TRƯỜNG</th>
+                  <th>ĐƠN THÀNH CÔNG</th>
+                  <th>DOANH THU</th>
+                  <th>HOA HỒNG</th>
+                </tr>
+              </thead>
+              <tbody id="salesTable"></tbody>
+            </table>
+          </div>
+        </section>
+        <footer class="page-footer"><span>© 2026 MY GRASS Business Portal</span><span><i></i> Bản demo UI · Dữ liệu minh
+            hoạ</span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast">Đã chuẩn bị báo cáo demo</div>
+  <script src="script.js"></script>
+</body>
+
+</html>
